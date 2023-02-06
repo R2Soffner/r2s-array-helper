@@ -4,12 +4,12 @@ namespace R2SArrayHelper\Traits;
 
 trait CanBeArray
 {
-    protected function fromArray(array $data): self
+    public static function fromArray(array $data): self
     {
         return new self(...$data);
     }
 
-    protected function toArray(): array
+    public function toArray(): array
     {
         $properties = $this->getClassProperties();
         $ar = [];
