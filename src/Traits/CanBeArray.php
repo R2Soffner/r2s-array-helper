@@ -9,11 +9,14 @@ trait CanBeArray
         return new self(...$data);
     }
 
-    public function toArray(): array
+    public function toArray(bool $omitEmptyAndNull = true): array
     {
         $properties = $this->getClassProperties();
         $ar = [];
         foreach ($properties as $property) {
+            if ($omitEmptyAndNull && empty($this->$property)) {
+                continue;
+            }
             $ar[$property] = $this->$property;
         }
         return $ar;
